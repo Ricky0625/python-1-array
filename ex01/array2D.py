@@ -3,6 +3,13 @@ import numpy as np
 
 def slice_me(family: list, start: int, end: int) -> list:
 
+    """
+    slice_me(family: list, start: int, end: int) -> list
+
+    Return a sliced list based on the given start and end.
+    It should only accept a 2D list.
+    """
+
     try:
         if not isinstance(family, list):
             raise AssertionError('not a list')
