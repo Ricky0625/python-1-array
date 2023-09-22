@@ -1,50 +1,58 @@
 from load_image import ft_load
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 
-def ft_zoom(path: str, zfactor: int | float, start_pixel: tuple =(0,0)) -> np.ndarray:
+def ft_zoom(img_arr: np.ndarray, factor: int | float,
+            start_px: tuple = (0, 0)) -> np.ndarray:
 
     """
     ft_zoom(path: str, zfactor: int | float, start_pixel: tuple) -> np.ndarray
-    
-    NOTE: start_pixel is an optional argument. It has a default value of (0, 0).
 
-    Return a zoomed img arr based on the zfactor(zoom in factor) and start pixel
-    (if specified).
+    NOTE: start_pixel is an optional argument. Default value is (0, 0).
+
+    Return a zoomed img arr based on the zfactor(zoom in factor)
+    and start pixel (if specified).
     """
 
     try:
-        if not isinstance(zfactor, (int | float)):
+        if img_arr is None:
+            raise AssertionError("img_arr is None")
+
+        if not isinstance(img_arr, np.ndarray):
+            raise AssertionError("expecting img_arr to be a numpy array")
+
+        if not isinstance(factor, (int, float)):
             raise AssertionError("expecting factor to be an int")
 
-        if zfactor < 1:
-            raise AssertionError("expecting factor to be greater than 0")
+        if not isinstance(start_px, tuple):
+            raise AssertionError("expecting start_px to be a tuple")
 
-        # load image
-        img_arr = ft_load(path)
-        if img_arr is None:
-            return
-        print(img_arr)
+        if not all([x >= 0 for x in start_px]):
+            raise AssertionError("expecting start_px consists of " +
+                                 "positive values only")
+
+        if factor < 1:
+            raise AssertionError("expecting factor to be greater than 0")
 
         # get the width and height of the img_arr, tuple unpacking operation
         (height, width, _) = img_arr.shape
 
         # calculate the new height and width based on the zoom factor
         new_dimension = min(height, width)
-        new_height = int(new_dimension / zfactor)
-        new_width = int(new_dimension / zfactor)
+        new_height = int(new_dimension / factor)
+        new_width = int(new_dimension / factor)
 
-        left, upper = start_pixel
+        left, upper = start_px
         right = left + new_width
         lower = upper + new_height
 
         if right > width or lower > height:
             raise AssertionError("zoomed region exceeds image dimension")
-        
+
         zoomed_img_arr = img_arr[upper:lower, left:right]
         print(f"New shape after slicing: {zoomed_img_arr.shape}")
-        print(zoomed_img_arr)
         return zoomed_img_arr
     except Exception as e:
         print(f"[ERROR]: {e}")
@@ -60,11 +68,15 @@ def main():
     """
 
     try:
-        img_arr = ft_zoom("animal.jpeg", 2, (450, 100))
+        img_arr = ft_load("animal.jpeg")
+        print(img_arr)
+        zoomed = ft_zoom(img_arr, 2, (450, 100))
+        print(zoomed)
 
-        if img_arr is not None:
-            plt.imshow(img_arr)
-            plt.show()
+        if zoomed is None:
+            sys.exit()
+        plt.imshow(zoomed)
+        plt.show()
     except KeyboardInterrupt:
         plt.close()
     except Exception as e:
