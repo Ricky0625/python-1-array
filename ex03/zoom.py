@@ -52,7 +52,8 @@ def ft_zoom(img_arr: np.ndarray, factor: int | float,
             raise AssertionError("zoomed region exceeds image dimension")
 
         zoomed_img_arr = img_arr[upper:lower, left:right]
-        print(f"New shape after slicing: {zoomed_img_arr.shape}")
+        print(f"New shape after slicing: {zoomed_img_arr.shape}" +
+              f" or ({zoomed_img_arr.shape[0]}, {zoomed_img_arr.shape[1]})")
         return zoomed_img_arr
     except Exception as e:
         print(f"[ERROR]: {e}")
@@ -74,7 +75,7 @@ def main():
         print(zoomed)
 
         if zoomed is None:
-            sys.exit()
+            return
         plt.imshow(zoomed)
         plt.show()
     except KeyboardInterrupt:
