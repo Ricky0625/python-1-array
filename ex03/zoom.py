@@ -31,8 +31,9 @@ def ft_zoom(path: str, zfactor: int | float, start_pixel: tuple =(0,0)) -> np.nd
         (height, width, _) = img_arr.shape
 
         # calculate the new height and width based on the zoom factor
-        new_height = int(height / zfactor)
-        new_width = int(width / zfactor)
+        new_dimension = min(height, width)
+        new_height = int(new_dimension / zfactor)
+        new_width = int(new_dimension / zfactor)
 
         left, upper = start_pixel
         right = left + new_width
@@ -59,7 +60,7 @@ def main():
     """
 
     try:
-        img_arr = ft_zoom("animal.jpeg", 2.5, (400, 200))
+        img_arr = ft_zoom("animal.jpeg", 2, (450, 100))
 
         if img_arr is not None:
             plt.imshow(img_arr)
