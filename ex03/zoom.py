@@ -59,7 +59,7 @@ def main():
     """
 
     try:
-        img_arr = ft_zoom("shanghai.jpeg", 10, (1200, 2000))
+        img_arr = ft_zoom("animal.jpeg", 2.5, (400, 200))
 
         if img_arr is not None:
             plt.imshow(img_arr)
