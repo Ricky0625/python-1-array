@@ -5,7 +5,7 @@ import sys
 
 
 def ft_transpose(img_arr: np.ndarray) -> np.ndarray:
-    
+
     """
     ft_transpose(img_arr: np.ndarray) -> np.ndarray
 
@@ -34,6 +34,7 @@ def ft_transpose(img_arr: np.ndarray) -> np.ndarray:
         return transposed
     except Exception as e:
         print(f"[ERROR]: {e}")
+
 
 def main():
 
