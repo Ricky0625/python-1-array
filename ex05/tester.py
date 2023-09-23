@@ -10,3 +10,7 @@ ft_blue(array)
 ft_grey(array)
 
 print(ft_invert.__doc__)
+print(ft_red.__doc__)
+print(ft_green.__doc__)
+print(ft_blue.__doc__)
+print(ft_grey.__doc__)
