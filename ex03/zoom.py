@@ -1,7 +1,6 @@
 from load_image import ft_load
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
 
 
 def ft_zoom(img_arr: np.ndarray, factor: int | float,
