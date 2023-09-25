@@ -1,7 +1,7 @@
 from load_image import ft_load
 import matplotlib.pyplot as plt
 
-img_arr = ft_load("mofyduck.jpeg")
+img_arr = ft_load("animal.jpeg")
 try:
     if (img_arr is not None):
         plt.imshow(img_arr)
