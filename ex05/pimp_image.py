@@ -20,6 +20,7 @@ def ft_invert(img_arr: np.ndarray) -> np.ndarray:
 
     """
     Inverts the color of the image received
+    Minus 255 to each of the RGB value
     """
 
     try:

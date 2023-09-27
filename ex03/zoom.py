@@ -50,7 +50,11 @@ def ft_zoom(img_arr: np.ndarray, factor: int | float,
         if right > width or lower > height:
             raise AssertionError("zoomed region exceeds image dimension")
 
-        zoomed_img_arr = img_arr[upper:lower, left:right]
+        # if i just do this -> [:, :, 0], i'm selecting all the values from
+        # the first channel along the dimension. this will then become a
+        # single list. if i do [:, :, 0:1], same but this will retain the
+        # 3rd dimension
+        zoomed_img_arr = img_arr[upper:lower, left:right, 0:1]
         print(f"New shape after slicing: {zoomed_img_arr.shape}" +
               f" or ({zoomed_img_arr.shape[0]}, {zoomed_img_arr.shape[1]})")
         return zoomed_img_arr
@@ -75,7 +79,7 @@ def main():
 
         if zoomed is None:
             return
-        plt.imshow(zoomed)
+        plt.imshow(zoomed, cmap="gray")
         plt.show()
     except KeyboardInterrupt:
         plt.close()

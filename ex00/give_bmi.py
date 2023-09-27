@@ -29,6 +29,8 @@ def give_bmi(
         bmis = []
 
         # check the list
+        if not (isinstance(height, list) and isinstance(weight, list)):
+            raise AssertionError('Both Height and Weight needs to be list')
         if height == [] or weight == []:
             raise AssertionError('Empty list')
         if len(height) != len(weight):
@@ -62,6 +64,8 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
         res = []
 
         # check the list
+        if not isinstance(bmi, list):
+            raise AssertionError('bmi needs to be a list')
         if bmi == []:
             raise AssertionError('Empty list')
         if not all_int_or_float(bmi):

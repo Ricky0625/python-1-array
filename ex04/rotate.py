@@ -55,7 +55,7 @@ def main():
 
         if transposed is None:
             sys.exit()
-        plt.imshow(transposed)
+        plt.imshow(transposed, cmap="gray")
         plt.show()
     except KeyboardInterrupt:
         plt.close()

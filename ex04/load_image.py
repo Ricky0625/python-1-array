@@ -77,7 +77,7 @@ def ft_zoom(img_arr: np.ndarray, factor: int | float,
         if right > width or lower > height:
             raise AssertionError("zoomed region exceeds image dimension")
 
-        zoomed_img_arr = img_arr[upper:lower, left:right]
+        zoomed_img_arr = img_arr[upper:lower, left:right, 0: 1]
         print(f"New shape after slicing: {zoomed_img_arr.shape}" +
               f" or ({zoomed_img_arr.shape[0]}, {zoomed_img_arr.shape[1]})")
         return zoomed_img_arr

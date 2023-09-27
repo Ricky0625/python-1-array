@@ -1,3 +1,8 @@
+"""
+PIL, Python Imaging Library, commonly referred to as Pillow.
+It provides a wide range of image processing and manipulation
+capabilities.
+"""
 from PIL import Image
 import numpy as np
 
